@@ -4,16 +4,48 @@
     <title>Event Customization</title>
   </head>
   <body>
-    <button id="doubleClick">Double-click Me</button>
-    <button id="rightClick">Right-click Me</button>
+    <h1 style="color: green">Kelompok 4</h1>
+    <h3>Apa itu Event Customization?</h3>
+    <div>
+      <p style="text-align: justify">
+        Dalam konteks event listener JavaScript, custom merujuk pada event yang dibuat oleh pengguna. Custom event listener dapat digunakan untuk menangani event yang tidak termasuk dalam daftar event bawaan JavaScript, seperti event
+        “Double-click” atau “Right-click”.
+      </p>
+    </div>
+    <div id="myDiv" style="background-color: #ece951; padding: 20px; text-align: center">Klik dua kali atau klik kanan pada kotak ini</div>
+    <div id="button" style="margin-top: 20px">
+      <button id="doubleClick" style="background-color: aquamarine; height: 40px">Double-click Me</button>
+      <button id="rightClick" style="background-color: aquamarine; height: 40px">Right-click Me</button>
+    </div>
+    <!-- Explanation of Event Customization's Example -->
+    <div>
+      <p style="text-align: justify">
+        Pada contoh di atas, terdapat sebuah kotak berwarna kuning. Ketika kotak tersebut diklik dua kali, event listener akan dijalankan dan alert box yang muncul adalah “Anda telah mengklik dua kali pada kotak ini!”. Sementara itu, ketika
+        kotak tersebut diklik kanan, event listener akan dijalankan dan alert box yang muncul adalah “Anda telah mengklik kanan pada kotak ini!”.
+      </p>
+      <p style="text-align: justify">
+        Untuk tombol yang berada di bawahnya juga melakukan hal yang sama. Jika tombol "Double-click me" diklik dua kali, event listener akan dijalankan dan alert box yang muncul adalah “You double-clicked the button!”. Sementara itu,
+        ketika tombol "Right-click me" diklik kanan, event listener akan dijalankan dan alert box yang muncul adalah “You right-clicked the button!”.
+      </p>
+    </div>
     <script type="text/javascript">
+      var myDiv = document.getElementById("myDiv");
       const doubleClickButton = document.getElementById("doubleClick");
       const rightClickButton = document.getElementById("rightClick");
-      // Double click
+      // Double click box
+      myDiv.addEventListener("dblclick", function () {
+        alert("Anda telah mengklik dua kali pada kotak ini!");
+      });
+      // Right click box
+      myDiv.addEventListener("contextmenu", function (event) {
+        event.preventDefault();
+        alert("Anda telah mengklik kanan pada kotak ini!");
+      });
+      // Double click button
       doubleClickButton.addEventListener("dblclick", () => {
         alert("You double-clicked the button!");
       });
-      // Right click
+      // Right click button
       rightClickButton.addEventListener("contextmenu", function (event) {
         event.preventDefault();
         alert("You right-clicked the button!");
