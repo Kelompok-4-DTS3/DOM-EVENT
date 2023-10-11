@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Event Bubbling dan Capturing</title>
+</head>
+
+<body>
+    <div id="outer" style="border: 1px solid red;">
+        Outer Div
+        <div id="middle" style="border: 1px solid blue;">
+            Middle Div
+            <button id="inner">Click Me</button>
+        </div>
+    </div>
+
+    <script>
+        const outer = document.getElementById("outer");
+        const middle = document.getElementById("middle");
+        const inner = document.getElementById("inner");
+
+        // Event Bubbling
+        outer.addEventListener("click", () => {
+            alert("Event Bubbling: You clicked the outer div");
+        });
+
+        // Event Capturing
+        inner.addEventListener("click", () => {
+            alert("Event Capturing: You clicked the button");
+        }, true);
+    </script>
+</body>
+
+</html>

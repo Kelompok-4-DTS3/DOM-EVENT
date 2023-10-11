@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Event Customization</title>
+</head>
+
+<body>
+    <button id="customButton">Double-click Me</button>
+
+    <script>
+        const customButton = document.getElementById("customButton");
+
+        customButton.addEventListener("dblclick", () => {
+            alert("You double-clicked the button!");
+        });
+    </script>
+</body>
+
+</html>
