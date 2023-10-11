@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Event Bubbling dan Capturing</title>
+    <style>
+        #outer { 
+            background-color: lightgreen; 
+            padding: 24px; 
+            border: 1px solid black; 
+        } 
+  
+        #middle { 
+            background-color: yellow; 
+            padding: 18px; 
+            border: 1px solid black; 
+  
+        } 
+  
+        #inner { 
+            background-color: orange; 
+            border: 1px solid black; 
+        }
+
+    </style>
+</head>
+
+<body>
+    
+    <div style="display: flex; justify-content: space-between;" >
+        <h1 style="color: green; margin: 0;">Kelompok 4</h1> <a  href="index.html">kembali</a>
+    </div>
+    <h3>Apa itu Event propagation, capturing, bubbling?</h3>
+    
+    <div>
+        <p>1. Bubbling</p>
+        <p>Ketika sebuah event terjadi pada sebuah komponen, pertama-tama event handler akan
+        dijalankan pada komponen tersebut, kemudian pada komponen parent nya, dan seterusnya pada
+        komponen parent lainnya. Secara default, semua event ditangani melalui urutan ini. melihat contoh dibawah urutanya akan menjadi: dari button, di ikuti dengan event div tengah hingga event div terluar.</p>
+
+        <p>2. Capturing</p>
+        <p>Ini kebalikan dari bubbling. event handler pertama-tama berada pada komponen parentnya dan kemudian pada komponen yang sebenarnya ingin menjalankan pevent handler tersebut. Singkatnya, event tersebut ditangkap terlebih dahulu oleh elemen terluar kemudian dilanjutkan ke elemen dalam (child element). Hal ini juga disebut trickle down (atas ke bawah).</p>
+    </div>
+
+    <div id="outer" style="border: 1px solid red;">
+        <span> </span>
+        Outer Div
+        <div id="middle" style="border: 1px solid blue;">
+            Middle Div
+            <button id="inner">Click Me</button>
+        </div>
+    </div>
+<hr>
+<!-- Explanation of Event Order -->
+
+    <div>
+        <p>
+            Saat Anda mengeklik button "click me" di dalam div "Middle", event yang berjalan mengikuti urutan event propagation, yang mencakup fase bubble dan capturing. urutannya antara lain :
+        </p>
+        <ul>
+            <li>
+                Outer div clicked (Capturing Phase)
+            </li>
+            <li>
+                Middle div clicked (Capturing Phase)
+            </li>
+            <li>
+                button clicked (Capturing Phase)
+            </li>
+            <li>
+                button clicked (Bubbling Phase)
+            </li>
+            <li>
+                Middle div clicked (Bublling Phase)
+            </li>
+            <li>
+                Outer div clicked (Bubbling Phase)
+            </li>
+        </ul>
+
+        <hr>
+        <p>
+            struktur event propagation
+        </p>
+        <p>element.addEventListener(event, function, options);</p>
+        <p>secara default event propagation akan menerapkan bubble phase, options nya false</p>
+        <pre>
+          <code style="color: #007bff;">
+            outer.addEventListener("click", () => {
+                alert("Outer div clicked (Bubbling Phase)");
+            }, false);
+          </code>
+        </pre>
+    </div>
+    <script>
+        const outer = document.getElementById("outer");
+        const middle = document.getElementById("middle");
+        const inner = document.getElementById("inner");
+
+        
+        //Event Bubbling
+        outer.addEventListener("click", () => {
+            alert("Outer div clicked (Bubbling Phase)");
+        }, false);
+
+        middle.addEventListener("click", () => {
+            alert("Middle div clicked (Bublling Phase)");
+        }, false)
+
+        inner.addEventListener("click", () => {
+            alert(" button clicked (Bubbling Phase)");
+        }, false);
+        
+         //Event Capturing
+        outer.addEventListener("click", () => {
+        alert("Outer div clicked (Capturing Phase)");
+         }, true);
+
+        middle.addEventListener("click", () => {
+            alert("Middle div clicked (Capturing Phase)");
+        }, true)
+
+        inner.addEventListener("click", () => {
+            alert("button clicked (Capturing Phase)");
+        }, true);
+
+
+    </script>
+</body>
+
+</html>
