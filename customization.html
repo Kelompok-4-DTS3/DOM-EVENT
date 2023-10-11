@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html>
-
-<head>
+  <head>
     <title>Event Customization</title>
-</head>
-
-<body>
-    <button id="customButton">Double-click Me</button>
-
-    <script>
-        const customButton = document.getElementById("customButton");
-
-        customButton.addEventListener("dblclick", () => {
-            alert("You double-clicked the button!");
-        });
+  </head>
+  <body>
+    <button id="doubleClick">Double-click Me</button>
+    <button id="rightClick">Right-click Me</button>
+    <script type="text/javascript">
+      const doubleClickButton = document.getElementById("doubleClick");
+      const rightClickButton = document.getElementById("rightClick");
+      // Double click
+      doubleClickButton.addEventListener("dblclick", () => {
+        alert("You double-clicked the button!");
+      });
+      // Right click
+      rightClickButton.addEventListener("contextmenu", function (event) {
+        event.preventDefault();
+        alert("You right-clicked the button!");
+      });
     </script>
-</body>
-
+  </body>
 </html>
